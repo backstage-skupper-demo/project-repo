@@ -1,9 +1,0 @@
-all:
-  children:
-    local:
-      hosts:
-        proj2:
-          ansible_connection: local
-          namespace: skupper-proj1
-          init:
-            siteName: proj1
