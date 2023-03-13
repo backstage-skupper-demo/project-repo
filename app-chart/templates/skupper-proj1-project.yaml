@@ -1,0 +1,7 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: skupper-proj1
+  annotations:
+    "helm.sh/hook": "pre-install"
+spec:
