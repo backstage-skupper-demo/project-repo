@@ -1,0 +1,11 @@
+all:
+  children:
+    local:
+      hosts:
+        proj1:
+          ansible_connection: local
+          namespace: component:default/skupper-proj1-project
+          init:
+            siteName: proj1
+          
+    
