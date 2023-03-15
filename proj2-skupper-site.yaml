@@ -1,0 +1,19 @@
+all:
+  children:
+    local:
+      hosts:
+        proj2:
+          ansible_connection: local
+          namespace: skupper-proj2
+          init:
+            siteName: proj2
+          
+          links:
+            - host: proj1-skupper-site
+          
+    
+    linked:
+      hosts:
+        proj1-skupper-site:
+          ansible_connection: local
+    
