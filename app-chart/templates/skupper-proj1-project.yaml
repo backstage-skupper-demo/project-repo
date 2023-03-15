@@ -1,7 +1,7 @@
 kind: Project
 apiVersion: project.openshift.io/v1
 metadata:
-  name: skupper-proj1
+  name: ${{values.project}}
   annotations:
     "helm.sh/hook": "pre-install"
 spec: {}
@@ -9,12 +9,12 @@ spec: {}
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: skupper-proj1-backstage-pipeline
-  namespace: skupper-proj1
+  name: ${{values.project}}-backstage-pipeline
+  namespace: ${{values.project}}
 subjects:
   - kind: ServiceAccount
     name: pipeline
-    namespace: backstage
+    namespace: ${{values.project}}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
