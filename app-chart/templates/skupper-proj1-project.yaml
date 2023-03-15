@@ -14,7 +14,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: pipeline
-    namespace: skupper-proj1
+    namespace: backstage
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
