@@ -4,7 +4,7 @@ metadata:
   name: skupper-proj1
   annotations:
     "helm.sh/hook": "pre-install"
-spec:
+spec: {}
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
