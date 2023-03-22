@@ -1,0 +1,43 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: proj2-inventory
+  namespace: backstage
+data:
+  inventory.yml: |
+    all:
+      children:
+        local:
+          hosts:
+            proj2:
+              ansible_connection: local
+              namespace: skupper-proj2
+              init:
+                siteName: proj2
+              
+              links:
+                - host: proj1
+              
+        
+        linked:
+          hosts:
+            proj1:
+              ansible_connection: local
+        
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: proj2-skupper-site
+  namespace: backstage
+  labels:
+    tekton.dev/pipeline: new-pipeline
+spec:
+  pipelineRef:
+    name: skupper-site-pipeline
+  serviceAccountName: pipeline
+  timeout: 1h0m0s
+  workspaces:
+    - configMap:
+        name: proj2-inventory
+      name: source
