@@ -25,19 +25,45 @@ data:
               ansible_connection: local
         
 ---
-apiVersion: tekton.dev/v1beta1
-kind: PipelineRun
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: proj2-skupper-site
+  name: proj2-skupper-site-init
   namespace: backstage
-  labels:
-    tekton.dev/pipeline: new-pipeline
 spec:
-  pipelineRef:
-    name: skupper-site-pipeline
-  serviceAccountName: pipeline
-  timeout: 1h0m0s
-  workspaces:
-    - configMap:
-        name: proj2-inventory
-      name: source
+  selector: {}
+  template:
+    metadata:
+      name: proj2-skupper-site-init
+    spec:
+      serviceAccountName: pipeline
+      containers:
+        - name: skupper-ansible
+          image: quay.io/mathianasj/ansible-skupper-pipeline@sha256:90d149f6907666b53dd33fe2f961c54353f7157522b1e3b132798d01c35e55c0
+          command:
+            - ansible-playbook
+            - /site-creation.yaml
+            - -i
+            - /workspace/source/inventory.yml
+            - -e
+            - vault_url=$(VAULT_URL)
+          volumeMounts:
+            - name: inventory
+              mountPath: /workspace/source
+          env:
+            - name: VAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: vault-secret
+                  key: vault-url
+            - name: VAULT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: vault-secret
+                  key: vault-token
+      volumes:
+      - name: inventory
+        configMap:
+          name: proj2-inventory
+          defaultMode: 420
+      restartPolicy: Never
