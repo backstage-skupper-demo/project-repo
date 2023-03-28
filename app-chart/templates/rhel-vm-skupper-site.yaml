@@ -42,7 +42,7 @@ spec:
       serviceAccountName: pipeline
       containers:
         - name: skupper-ansible
-          image: quay.io/mathianasj/ansible-skupper-pipeline@sha256:a72ef1d052d661694c47cb46ec2b1be906e778ca5b7946451f87f0e2a78a2172
+          image: ${{values.ansible.image}}
           command:
             - sh
             - -c
