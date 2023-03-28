@@ -42,7 +42,7 @@ spec:
       serviceAccountName: pipeline
       containers:
         - name: skupper-ansible
-          image: ${{values.ansible.image}}
+          image: {{ .Values.ansible.image }}
           command:
             - sh
             - -c
