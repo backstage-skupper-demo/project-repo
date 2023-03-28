@@ -1,0 +1,68 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: rhel-skupper-inventory
+  namespace: backstage
+data:
+  inventory.yml: |
+    all:
+      children:
+        local:
+          hosts:
+            rhel-skupper:
+              platform: "podman"
+              init:
+                siteName: rhel-skupper
+              
+              links:
+                - host: proj1
+              
+        
+        linked:
+          hosts:
+            proj1:
+              ansible_connection: local
+        
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rhel-skupper-skupper-site-init
+  namespace: backstage
+spec:
+  selector: {}
+  template:
+    metadata:
+      name: rhel-skupper-skupper-site-init
+    spec:
+      serviceAccountName: pipeline
+      containers:
+        - name: skupper-ansible
+          image: quay.io/mathianasj/ansible-skupper-pipeline@sha256:90d149f6907666b53dd33fe2f961c54353f7157522b1e3b132798d01c35e55c0
+          command:
+            - ansible-playbook
+            - /site-creation.yaml
+            - -i
+            - /workspace/source/inventory.yml
+            - -e
+            - vault_url=$(VAULT_URL)
+          volumeMounts:
+            - name: inventory
+              mountPath: /workspace/source
+          env:
+            - name: VAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: vault-secret
+                  key: vault-url
+            - name: VAULT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: vault-secret
+                  key: vault-token
+      volumes:
+      - name: inventory
+        configMap:
+          name: rhel-skupper-inventory
+          defaultMode: 420
+      restartPolicy: Never
