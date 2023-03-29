@@ -15,7 +15,6 @@ data:
               init:
                 siteName: proj1
                 enableServiceSync: "true"
-                enableConsole:
               
         
 ---
