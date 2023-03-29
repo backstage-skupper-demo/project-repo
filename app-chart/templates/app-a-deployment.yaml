@@ -24,6 +24,8 @@ spec:
           env:
             - name: QUARKUS_PROFILE
               value: prod
+            - name: QUARKUS_DATASOURCE_JDBC_URL
+              value: jdbc:postgresql://vmdb:5432/books
       imagePullSecrets: []
   strategy:
     type: Recreate
