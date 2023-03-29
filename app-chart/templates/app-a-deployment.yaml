@@ -21,7 +21,9 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
-          env: []
+          env:
+            - name: QUARKUS_PROFILE
+              value: prod
       imagePullSecrets: []
   strategy:
     type: Recreate
