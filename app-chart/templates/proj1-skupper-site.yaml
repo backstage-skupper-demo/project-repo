@@ -14,8 +14,8 @@ data:
               namespace: skupper-proj1
               init:
                 siteName: proj1
-                enableServiceSync: True
-                enableConsole: True
+                enableServiceSync: "True"
+                enableConsole: "True"
               
         
 ---
