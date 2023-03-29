@@ -13,6 +13,7 @@ data:
               platform: "podman"
               init:
                 siteName: rhel-vm
+                enableServiceSync: True
                 ingressHosts:
                   - 192.168.23.4
               
