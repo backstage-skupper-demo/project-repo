@@ -18,6 +18,7 @@ data:
                 siteName: proj1
                 enableServiceSync: 'true'
                 enableConsole: 'true'
+                enableFlowCollector: 'true'
         
 ---
 apiVersion: batch/v1
