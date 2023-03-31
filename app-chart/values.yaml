@@ -1,2 +1,2 @@
 ansible:
-  image: quay.io/mathianasj/ansible-skupper-pipeline@sha256:05d60ea94d954920736de13153a193a055b817f25f272bc25b0fd942abc8452e
+  image: quay.io/mathianasj/ansible-skupper-pipeline@sha256:1141648b109070805c713c0ed18e0282ef8b4015140be8aa85bbc98552ce3d22
