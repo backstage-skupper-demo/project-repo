@@ -42,7 +42,12 @@ spec:
           volumeMounts:
             - name: inventory
               mountPath: /workspace/source
+            - name: ssh
+              mountPath: /workspace/.ssh/id_rsa
+              subPath: id_rsa
           env:
+            - name: ANSIBLE_HOST_KEY_CHECKING
+              value: "False"
             - name: VAULT_URL
               valueFrom:
                 secretKeyRef:
@@ -56,6 +61,10 @@ spec:
       volumes:
       - name: inventory
         configMap:
-          name: app-a-deployment-expose-inventory
+          name: app-a-rhel-service-bind-inventory
           defaultMode: 420
+      - name: ssh
+        secret:
+          secretName: ssh-key
+          defaultMode: 256
       restartPolicy: Never
