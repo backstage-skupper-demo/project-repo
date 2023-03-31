@@ -16,8 +16,7 @@ data:
                 type: cert
               init:
                 siteName: proj1
-                enableServiceSync: True
-                enableConsole: True
+                enableServiceSync: 'true'
               
         
 ---
