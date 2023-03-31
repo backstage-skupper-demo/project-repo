@@ -42,7 +42,7 @@ spec:
           command:
             - sh
             - -c
-            - cp /workspace/.ssh/id_rsa /tmp/id_rsa && chmod 0400 /tmp/id_rsa && ansible-playbook /site-creation.yaml -i /workspace/source/inventory.yml -e vault_url=$(VAULT_URL) -e podman=true --private-key=/tmp/id_rsa
+            - cp /workspace/.ssh/id_rsa /tmp/id_rsa && chmod 0400 /tmp/id_rsa && ansible-playbook /service.yaml -i /workspace/source/inventory.yml -e vault_url=$(VAULT_URL) -e podman=true --private-key=/tmp/id_rsa
           volumeMounts:
             - name: inventory
               mountPath: /workspace/source
