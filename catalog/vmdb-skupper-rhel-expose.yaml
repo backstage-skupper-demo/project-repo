@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: vmdb-skupper-rhel-expose
+  annotations:
+    github.com/project-slug: backstage-skupper-demo/backstage-catalog
+spec:
+  type: skupper-expose
+  lifecycle: unknown
+  owner: Joshua Mathianas
