@@ -17,7 +17,7 @@ data:
               init:
                 siteName: proj1
                 enableServiceSync: 'true'
-              
+                console: 'true'
         
 ---
 apiVersion: batch/v1
