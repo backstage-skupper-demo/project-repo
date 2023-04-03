@@ -11,7 +11,7 @@ data:
           hosts:
             proj1:
               ansible_connection: local
-              namespace: skupper-proj1
+              namespace: skupper-proj2
               token:
                 type: cert
               init:
@@ -20,6 +20,14 @@ data:
                 enableConsole: 'true'
                 enableFlowCollector: 'true'
               
+              links:
+                - host: proj1
+              
+        
+        linked:
+          hosts:
+            proj1:
+              ansible_connection: local
         
 ---
 apiVersion: batch/v1
