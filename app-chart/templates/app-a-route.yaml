@@ -24,8 +24,6 @@ spec:
     name: app-a
   tls:
     termination: edge
-    insecureEdgeTerminationPolicy: ''
-    destinationCACertificate: ''
   path: /
   port:
     targetPort: 8080
