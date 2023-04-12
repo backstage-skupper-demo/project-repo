@@ -4,6 +4,8 @@ metadata:
   namespace: skupper-proj1
   name: app-a
   annotations: {}
+  labels:
+    backstage.io/kubernetes-id: my-kubernetes-component
 spec:
   selector:
     matchLabels:
@@ -13,6 +15,7 @@ spec:
     metadata:
       labels:
         app: app-a
+        backstage.io/kubernetes-id: my-kubernetes-component
     spec:
       containers:
         - name: container
