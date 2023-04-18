@@ -1,0 +1,31 @@
+
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: skupper-proj1
+  name: app-a
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: app-a
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  namespace: skupper-proj1
+  name: app-a
+  annotations: {}
+spec:
+  to:
+    kind: Service
+    name: app-a
+  tls:
+    termination: edge
+  path: /
+  port:
+    targetPort: 8080
+
