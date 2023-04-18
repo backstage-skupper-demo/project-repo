@@ -6,7 +6,7 @@ metadata:
   annotations:
     
     skupper.io/proxy: http
-    skupper.io/port: 8080
+    skupper.io/port: "8080"
     
 spec:
   selector:
