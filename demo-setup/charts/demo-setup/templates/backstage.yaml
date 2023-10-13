@@ -1,0 +1,23 @@
+project: default
+source:
+  repoURL: 'https://github.com/redhat-gpte-devopsautomation/janus-idp-gitops'
+  path: charts/backstage
+  targetRevision: HEAD
+  helm:
+    parameters:
+      - name: app.baseUrl
+        value: https://backstage-backstage.apps.{{ .Values.baseDomain }}
+      - name: backend.baseUrl
+        value: https://backstage-backstage.apps.{{ .Values.baseDomain }}
+      - name: backend.cors.origin
+        value: https://backstage-backstage.apps.{{ .Values.baseDomain }}
+      - name: backend.reading.allow[0].host
+        value: https://backstage-backstage.apps.{{ .Values.baseDomain }}
+      
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: backstage
+syncPolicy:
+  automated: {}
+  syncOptions:
+    - CreateNamespace=true
