@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/redhat-gpte-devopsautomation/janus-idp-gitops'
+    repoURL: 'https://github.com/mathianasj/janus-idp-gitops'
     path: charts/backstage
     targetRevision: HEAD
     helm:
