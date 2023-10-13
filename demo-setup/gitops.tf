@@ -62,8 +62,8 @@ resource "kubernetes_manifest" "application_cluster_config" {
             },
           ]
         }
-        "path" = "."
-        "repoURL" = "https://github.com/backstage-skupper-demo/project-repo/demo-setup/charts"
+        "path" = "./demo-setup/charts/demo-setup"
+        "repoURL" = "https://github.com/backstage-skupper-demo/project-repo"
         "targetRevision" = "HEAD"
       }
       "syncPolicy" = {
