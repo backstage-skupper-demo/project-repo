@@ -18,6 +18,8 @@ spec:
           value: https://backstage-backstage.apps.{{ .Values.baseDomain }}
         - name: backend.reading.allow[0].host
           value: https://backstage-backstage.apps.{{ .Values.baseDomain }}
+        - name: image
+          value: quay.io/rhdh/rhdh-hub-rhel9:0.2
         
   destination:
     server: 'https://kubernetes.default.svc'
